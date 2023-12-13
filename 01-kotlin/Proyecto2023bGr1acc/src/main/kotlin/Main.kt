@@ -86,6 +86,8 @@ fun main(){
     val arregloDinamico: ArrayList<Int> = arrayListOf<Int>(1,2,3,4,5,6,7,8,9,10)
     println(arregloDinamico)
 
+
+
     arregloDinamico.add(11)
     arregloDinamico.add(12)
     println(arregloDinamico)
@@ -98,7 +100,10 @@ fun main(){
         }
     // IT (ESO) SIGNIFICA EL ELEMENTO ITERADO
     arregloDinamico.forEach{println(it)}
-
+    val repuestaForEach2: Unit = arregloDinamico
+        .forEach {valorActual: Int ->
+            println("Valor actual: ${valorActual}")
+        }
     arregloEstatico
         .forEachIndexed { indice: Int, valorActual: Int ->
             println("Valor ${valorActual} Indice: ${indice}")
@@ -250,7 +255,7 @@ class Suma( // Constructor Primario Suma
         agregarHistorial(total)
         return total
     }
-  
+
 
     companion object{ //Atributos y Metodos "Compartidos" entre las instancias
         val pi = 3.14

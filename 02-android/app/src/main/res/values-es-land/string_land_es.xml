@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="texto_saludo">Buenas noches landscape</string>
+    <color name="back1">#A86955</color>
+    <color name="color1">#1C31A6</color>
 </resources>

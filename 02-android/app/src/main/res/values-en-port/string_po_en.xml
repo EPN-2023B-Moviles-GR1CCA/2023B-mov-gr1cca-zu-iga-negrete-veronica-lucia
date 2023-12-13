@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="texto_saludo">Good night portrait</string>
+    <color name="back1">#FF03DAC5</color>
+    <color name="color1">#E3242B</color>
 </resources>
