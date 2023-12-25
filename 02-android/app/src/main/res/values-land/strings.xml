@@ -3,4 +3,10 @@
     <string name="texto_saludo">Good night landscape</string>
     <color name="back1">#FF3700B3</color>
     <color name="color1">#FFFFFFFF</color>
+
+    <string-array name="string_array_opciones_dialogo">
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miercoles</item>
+    </string-array>
 </resources>
