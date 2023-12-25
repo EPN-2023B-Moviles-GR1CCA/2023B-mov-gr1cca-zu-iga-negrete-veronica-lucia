@@ -2,6 +2,9 @@ package com.example.gr1accvlzn2023b
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ContextMenu
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
@@ -28,12 +31,28 @@ class BListView : AppCompatActivity() {
             .setOnClickListener {
                 anadirEntrenador(adaptador)
             }
+        registerForContextMenu(listView)
     }
     fun anadirEntrenador(
         adaptador: ArrayAdapter<BEntrenador>
     ){
         arreglo.add(BEntrenador(1, "Sebastian", "Descripcion"))
         adaptador.notifyDataSetChanged()
+    }
+    var posicionItemSeleccionado = 0
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        // Llenamos las opciones del menu
+        val inflater = menuInflater
+        // inflater.inflate(R.menu.menu, menu)
+        // Obtener el id del ArrayListSeleccionado
+        val info = menuInfo as AdapterView.AdapterContextMenuInfo
+        val posicion = info.position
+        posicionItemSeleccionado = posicion
     }
 
 
