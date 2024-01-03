@@ -2,15 +2,13 @@ import com.google.gson.Gson
 import java.io.BufferedWriter
 import java.io.File
 import java.io.FileWriter
-import java.text.SimpleDateFormat
-import java.util.Date
 
 class Piezas(
     var idPieza: Int ,
     var nombrePieza: String?,
-    var cantidad: Int?,
     var peso: Double?,
-    var idDispositivo: Dispositivo
+    var garantia: Boolean?,
+    var fabricante: String?
 ) {
     companion object{
         private const val PIEZAS_FILE = "C:/Github/2023B-mov-gr1cca-zuniga-negrete-veronica-lucia/Deber-01/DispositivoPiezas/src/main/kotlin/piezas.txt"
@@ -61,6 +59,6 @@ class Piezas(
         }
     }
     override fun toString(): String {
-        return "ID #$idPieza \nNombre: $nombrePieza \nCantidad: $cantidad \nPeso: $peso"
+        return "ID #$idPieza \nNombre: $nombrePieza \nGarantia: $garantia \nPeso: $peso \nFabricante: $fabricante"
     }
 }

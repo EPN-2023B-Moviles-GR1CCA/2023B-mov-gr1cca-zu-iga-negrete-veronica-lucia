@@ -7,7 +7,7 @@ fun main() {
     val scanner = Scanner(System.`in`)
 
     while (true) {
-        println("***************Bienvenido*************/n")
+        println("***************Bienvenido*************")
         println("MENU DE OPCIONES:")
         println("1. Dispositivos")
         println("2. Piezas")
@@ -23,6 +23,7 @@ fun main() {
                 println("2. Listar Dispositivos")
                 println("3. Actualizar Dispositivo")
                 println("4. Eliminar Dispositivo")
+                println("5. Salir")
 
                 println("Ingresa una opcion: ")
                 val opcionMD = scanner.nextInt()
@@ -45,12 +46,12 @@ fun main() {
 
                         val piezas = mutableListOf<Piezas>()
 
-                        while (true){
+                        while (true) {
                             println("Ingresar una pieza (s/n)")
                             val op = scanner.next()
-                            if(op.equals("s", ignoreCase = true)){
+                            if (op.equals("s", ignoreCase = true)) {
                                 val piezasActuales = Piezas.leerPiezas()
-                                piezasActuales.forEach{it.toString()}
+                                piezasActuales.forEach { println( it.toString())}
                                 println("Ingrese el ID de la pieza a ingresar:")
                                 val idPieza = scanner.nextInt()
                                 val nuevaPieza = Piezas.leerPiezas().find { it.idPieza == idPieza }
@@ -60,7 +61,7 @@ fun main() {
                                 } else {
                                     println("Pieza con el el ID $idPieza no encontrada.")
                                 }
-                            }else{
+                            } else {
                                 break
                             }
                         }
@@ -82,7 +83,7 @@ fun main() {
                         val listaDispositivos = Dispositivo.leerDispositivos()
                         if (listaDispositivos.isNotEmpty()) {
                             println("****LISTA DE DISPOSITIVOS****")
-                            listaDispositivos.forEach { it.toString() }
+                            listaDispositivos.forEach { println( it.toString())}
                         } else {
                             println("No hay dispositivos por mostrar")
                         }
@@ -96,7 +97,6 @@ fun main() {
 
                         println("Ingrese el ID del dispositivo que desea actualizar: ")
                         val id = scanner.nextInt()
-
                         val dispActual = listaDispositivosActuales.find { it.idDispositivo == id }
 
                         if (dispActual != null) {
@@ -134,13 +134,23 @@ fun main() {
                                         println("Nuevo Precio:")
                                         dispActual.precio = scanner.nextDouble()
                                     }
-                                    5 -> {
-                                        println("Nuevas Piezas:")
-                                        val cantidadPiezas = scanner.nextInt()
-                                        val piezas = mutableListOf<Piezas>()
-                                        for
-                                    }
 
+                                    5 -> {
+                                        println("Cantidad de piezas:")
+                                        val cantidadPiezas = scanner.nextInt()
+                                        val piezasActuales = Piezas.leerPiezas()
+                                        val piezasSeleccionadas = mutableListOf<Piezas>()
+
+                                        repeat(cantidadPiezas){
+                                            println("Receta ${it + 1}:")
+                                            val idPieza = scanner.nextInt()
+                                            val pieza = piezasActuales.find { it.idPieza == idPieza }
+                                            if(pieza != null){
+                                                piezasSeleccionadas.add(pieza)
+                                            }
+                                        }
+                                        dispActual.piezas = piezasSeleccionadas.toTypedArray()
+                                    }
                                     else -> {
                                         println("Atributo no válido.")
                                         break
@@ -174,6 +184,7 @@ fun main() {
 
                     }
 
+
                     else -> {
                         println("Opcion Invalida")
                     }
@@ -195,18 +206,111 @@ fun main() {
 
                 when (opcionMP) {
                     1 -> {
+                        println("****INGRESAR PIEZA****")
+                        print("Ingrese el ID de la pieza: ")
+                        val idPieza = scanner.nextInt()
+                        print("Ingrese el nombre de la pieza: ")
+                        val nombrePieza = readLine()
+                        print("Ingrese el peso de la pieza: ")
+                        val peso = scanner.nextDouble()
+                        print("Ingrese si tiene garantia (true/false): ")
+                        val garantia = scanner.nextBoolean()
+                        print("Ingrese el fabricante de la pieza: ")
+                        val fabricante = readLine()
 
+                        val nuevaPieza = Piezas(
+                            idPieza = idPieza,
+                            nombrePieza = nombrePieza,
+                            peso = peso,
+                            garantia = garantia,
+                            fabricante = fabricante
+                        )
+
+                        Piezas.crearPieza(nuevaPieza)
+                        println("Carga de pieza exitosa!")
                     }
 
                     2 -> {
-
+                        val listaPiezas = Piezas.leerPiezas()
+                        if (listaPiezas.isNotEmpty()) {
+                            println("****LISTA DE PIEZAS****")
+                            listaPiezas.forEach { println(it.toString()) }
+                        } else {
+                            println("No hay piezas por mostrar")
+                        }
                     }
 
                     3 -> {
+                        println("****ACTUALIZAR PIEZA****")
+                        val listaPiezasActuales = Piezas.leerPiezas()
+                        println("Piezas actuales")
+                        listaPiezasActuales.forEach { println(it) }
+
+                        println("Ingrese el ID de la Pieza que desea actualizar: ")
+                        val id = scanner.nextInt()
+
+                        val piezaActual = listaPiezasActuales.find { it.idPieza == id }
+
+                        if (piezaActual != null) {
+                            do {
+                                println( "Ingrese el atributo que desea actualizar:" )
+                                println("1. Nombre")
+                                println("2. Peso")
+                                println("3. Garantia")
+                                println("4. Fabricante")
+                                val atributo = scanner.nextInt()
+
+                                when (atributo) {
+                                    1 -> {
+                                        println("Nuevo Nombre:")
+                                        piezaActual.nombrePieza = readLine()
+                                    }
+
+                                    2 -> {
+                                        println("Nuevo Peso:")
+                                        piezaActual.peso = scanner.nextDouble()
+                                    }
+
+                                    3 -> {
+                                        println("Nueva Garantia:")
+                                        piezaActual.garantia = scanner.nextBoolean()
+                                    }
+
+                                    4 -> {
+                                        println("Nuevo Fabricante:")
+                                        piezaActual.fabricante = readLine()
+                                    }
+
+                                    else -> {
+                                        println("Atributo no válido.")
+                                        break
+                                    }
+                                }
+
+                                println("¿Desea actualizar otro atributo? (s/n):")
+                            } while (readLine()?.toLowerCase() == "s")
+                            Piezas.actualizarPieza(piezaActual)
+                            println("Pieza actualizada con éxtio!")
+
+                        } else {
+                            println("Pieza no encontrada")
+                        }
+
+                        val listaPiezasActualizada = Piezas.leerPiezas()
+                        println("\nLista de piezas después de la actualización:")
+                        listaPiezasActualizada.forEach { println(it) }
 
                     }
 
                     4 -> {
+                        println("****ELIMINAR PIEZA****")
+                        val listaPiezasActuales = Piezas.leerPiezas()
+                        println("Piezas actuales")
+                        listaPiezasActuales.forEach { println(it) }
+                        println("Ingrese el ID de la pieza que desea eliminar: ")
+                        val id = scanner.nextInt()
+                        Piezas.eliminarPieza(id)
+                        println("Pieza eliminada con éxtio!")
 
                     }
 
@@ -216,14 +320,14 @@ fun main() {
 
                 }
 
-
             }
-
+            0 -> {
+                println("Saliendo...")
+                return
+            }
             else -> {
-
+                println("Opcion invalida.")
             }
-
-
         }
     }
 

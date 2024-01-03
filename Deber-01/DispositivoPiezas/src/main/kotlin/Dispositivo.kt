@@ -35,7 +35,7 @@ class Dispositivo(
                 dispositivos.forEach { dispositivo ->
                     val jsonDispo = gson.toJson(dispositivo)
                     writer.write(jsonDispo)
-                    writer.newLine() // Agregar un salto de línea después de cada receta
+                    writer.newLine()
                 }
             }
         }

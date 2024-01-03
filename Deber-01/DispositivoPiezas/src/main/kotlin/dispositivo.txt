@@ -1,0 +1,2 @@
+{"idDispositivo":2,"nombreDispositivo":"celular infinix","fechaCreacion":"Jan 2, 2024, 12:00:00 AM","stock":true,"precio":100.0,"piezas":[{"idPieza":1,"nombrePieza":"tornillo","peso":1.0,"garantia":false,"fabricante":"panda fastener"}]}
+{"idDispositivo":3,"nombreDispositivo":"Computador HP","fechaCreacion":"Jan 12, 2024, 12:00:00 AM","stock":false,"precio":500.0,"piezas":[{"idPieza":2,"nombrePieza":"Perno","peso":2.0,"garantia":true,"fabricante":"perno max"},{"idPieza":1,"nombrePieza":"tornillo","peso":1.0,"garantia":false,"fabricante":"panda fastener"}]}

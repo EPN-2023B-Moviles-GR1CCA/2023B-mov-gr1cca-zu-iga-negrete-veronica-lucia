@@ -1,0 +1,2 @@
+{"idPieza":2,"nombrePieza":"Perno","peso":2.0,"garantia":true,"fabricante":"perno max"}
+{"idPieza":5,"nombrePieza":"cable","peso":6.0,"garantia":true,"fabricante":"cable max"}
