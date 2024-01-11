@@ -9,8 +9,11 @@ class FRecyclerViewAdaptadorNombreDescripcion(
     private val lista: ArrayList<BEntrenador>,
     private val recyclerView: RecyclerView
 ): RecyclerView.Adapter<FRecyclerViewAdaptadorNombreDescripcion.MyViewHolder>() {
-    
-    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view)
+
+    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view){
+        //son clases dentro de otra clase
+
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         TODO("Not yet implemented")
