@@ -3,7 +3,7 @@ package com.example.examen01
 import java.text.SimpleDateFormat
 import java.util.Date
 
-data class Dispositivo(
+ class Dispositivo(
     var idDispositivo: Int,
     var nombreDispositivo: String?,
     var fechaCreacion: Date,
