@@ -6,13 +6,11 @@ import java.util.Date
  class Dispositivo(
     var idDispositivo: Int,
     var nombreDispositivo: String?,
-    var fechaCreacion: Date,
+    var fechaCreacion: String?,
     var stock: Boolean,
-    var precio: Double?
+    var precio: Float?,
 ) {
     override fun toString(): String {
-        val formato = SimpleDateFormat("ddd-MM-yyyy")
-        val fecha = formato.format(fechaCreacion)
-        return "ID #$idDispositivo \nNombre: $nombreDispositivo \nFecha creación: $fecha \nStock: $stock\nPrecio: $precio"
+        return "ID #$idDispositivo \nNombre: $nombreDispositivo \nFecha creación: $fechaCreacion \nStock: $stock\nPrecio: $precio"
     }
 }

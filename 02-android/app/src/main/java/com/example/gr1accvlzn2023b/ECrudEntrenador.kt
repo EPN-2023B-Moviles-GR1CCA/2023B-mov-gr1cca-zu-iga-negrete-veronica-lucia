@@ -55,9 +55,7 @@ class ECrudEntrenador : AppCompatActivity() {
             }
 
 
-        val botonEliminarBDD = findViewById<Button>(
-            R.id.btn_eliminar_bdd
-        )
+        val botonEliminarBDD = findViewById<Button>(R.id.btn_eliminar_bdd)
         botonEliminarBDD.setOnClickListener {
             val id = findViewById<EditText>(R.id.input_id)
             val respuesta = EBaseDeDatos
