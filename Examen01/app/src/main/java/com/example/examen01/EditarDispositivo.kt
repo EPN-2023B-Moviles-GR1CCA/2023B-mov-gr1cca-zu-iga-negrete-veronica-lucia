@@ -3,8 +3,10 @@ package com.example.examen01
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 
 class EditarDispositivo : AppCompatActivity() {
@@ -12,54 +14,56 @@ class EditarDispositivo : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_dispositivo)
 
-        val id = intent.getIntExtra("id",0)
+        val idActual = intent.extras?.getInt("idDispositivo")
+        val name = intent.extras?.getString("nombreDispositivo")
 
-        val disp = BaseDatos.tablaDispositivo!!.consultarDispositivoPorID(id)
-
-        val nombre = findViewById<EditText>(R.id.edit_nombre)
-        val nombreActual = disp.nombreDispositivo.toString()
-        nombre.setText(nombreActual)
-
-        val fecha = findViewById<EditText>(R.id.edit_fecha)
-        val fechaInicial = disp.fechaCreacion.toString()
-        fecha.setText(fechaInicial)
-
-        val  precio = findViewById<EditText>(R.id.edit_precio)
-        val precioActual = disp.precio.toString()
-        precio.setText(precioActual)
-
-        val  stock = findViewById<EditText>(R.id.edit_precio)
-        val stockActual = disp.stock.toString()
-        stock.setText(stockActual)
+        if(idActual != null){
+            val dipAEditar = BaseDatos.tablaDispositivo!!.consultarDispositivoPorID(idActual)
+            val  id = findViewById<EditText>(R.id.input_idDisp)
+            id.setText(dipAEditar.idDispositivo)
+            val nombre = findViewById<EditText>(R.id.edit_nombre)
+            nombre.setText(dipAEditar.nombreDispositivo)
+            val fecha = findViewById<EditText>(R.id.edit_fecha)
+            fecha.setText(dipAEditar.fechaCreacion)
+            val  precio = findViewById<EditText>(R.id.edit_precio)
+            precio.setText(dipAEditar.precio.toString())
+            val  stock = findViewById<EditText>(R.id.edit_stock)
+            stock.setText(dipAEditar.stock.toString())
+        }
 
         val botonActualizar = findViewById<Button>(R.id.btn_actualizar)
         botonActualizar.setOnClickListener{
-            val nombre = nombre.text.toString()
-            val fecha = fecha.text.toString()
-            val precio = precio.text.toString()
-            val stock = stock.text.toString().toBoolean()
 
-            val intentParam = Intent()
+            try{
+                val idDisp = findViewById<EditText>(R.id.input_idDisp)
+                val nombre = findViewById<EditText>(R.id.input_nombre)
+                val fecha = findViewById<EditText>(R.id.input_fecha)
+                val precio = findViewById<EditText>(R.id.input_precio)
+                val stock = findViewById<EditText>(R.id.input_stock)
 
-            intentParam.putExtra("nombreEditado",nombre)
-            intentParam.putExtra("fechaEditado",fecha)
-            intentParam.putExtra("precioEditado",precio.toFloat())
-            intentParam.putExtra("stockEditado",stock)
+                val idDipositivo = idDisp.text.toString().toInt()
+                val nombreDispositivo = nombre.text.toString()
+                val fechaCreacion  = fecha.text.toString()
+                val precioDispositivo = precio.text.toString().toFloat()
+                val stockDispositivo = stock.text.toString().toBoolean()
 
-            BaseDatos.tablaDispositivo!!.actualizarDipositivoFormulario(
-                nombre,fecha,stock,precio.toFloat(),id
-            )
-            setResult(
-                RESULT_OK,
-                intentParam
-            )
-            finish()
+
+                BaseDatos.tablaDispositivo!!.actualizarDipositivoFormulario(nombreDispositivo,
+                    fechaCreacion,stockDispositivo,precioDispositivo, idDipositivo)
+
+
+                irActividad(ListaDispositivos::class.java)
+
+
+            }catch (e: Exception) {
+                Log.e("Error", "Error en la aplicación", e)
+            }
         }
 
 
 
-
     }
+
 
     fun irActividad(
         clase: Class<*>

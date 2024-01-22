@@ -3,10 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/mi_editar"
+        android:id="@+id/mi_editar_dispo"
         android:title="Editar" />
     <item
-        android:id="@+id/mi_eliminar"
+        android:id="@+id/mi_eliminar_dispo"
         android:title="Eliminar" />
     <item
         android:id="@+id/mi_verPiezas"

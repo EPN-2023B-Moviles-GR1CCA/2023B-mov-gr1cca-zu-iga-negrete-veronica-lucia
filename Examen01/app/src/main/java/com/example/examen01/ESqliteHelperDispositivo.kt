@@ -69,7 +69,7 @@ class ESqliteHelperDispositivo(contexto: Context?,) : SQLiteOpenHelper(contexto,
         val resultadoEliminacion = conexionEscritura
             .delete(
                 "DISPOSITIVO",
-                "id=?",
+                "idDispositivo=?",
                 parametrosConsultaDelete
             )
         conexionEscritura.close()
@@ -89,7 +89,7 @@ class ESqliteHelperDispositivo(contexto: Context?,) : SQLiteOpenHelper(contexto,
             .update(
                 "DISPOSITIVO", // Nombre tabla
                 valoresAActualizar, // Valores
-                "id=?", // Consulta Where
+                "idDispositivo=?", // Consulta Where
                 parametrosConsultaActualizar
             )
         conexionEscritura.close()
@@ -99,7 +99,7 @@ class ESqliteHelperDispositivo(contexto: Context?,) : SQLiteOpenHelper(contexto,
     fun consultarDispositivoPorID(id: Int): Dispositivo{
         val baseDatosLectura = readableDatabase
         val scriptConsultaLectura = """
-            SELECT * FROM DISPOSITIVO WHERE ID = ?
+            SELECT * FROM DISPOSITIVO WHERE idDispositivo = ?
         """.trimIndent()
         val parametrosConsultaLectura = arrayOf(id.toString())
         val resultadoConsultaLectura = baseDatosLectura.rawQuery(
@@ -116,7 +116,7 @@ class ESqliteHelperDispositivo(contexto: Context?,) : SQLiteOpenHelper(contexto,
                 val fechaCreacion = resultadoConsultaLectura.getString(2)
                 val stock = resultadoConsultaLectura.getString(3)
                 val precio = resultadoConsultaLectura.getString(4)
-                if(id != null){
+                if(idDispositivo != null){
                     // val usuarioEncontrado = BEntrenador(0, "" , "")
                     usuarioEncontrado.idDispositivo = idDispositivo
                     usuarioEncontrado.nombreDispositivo= nombreDispositivo

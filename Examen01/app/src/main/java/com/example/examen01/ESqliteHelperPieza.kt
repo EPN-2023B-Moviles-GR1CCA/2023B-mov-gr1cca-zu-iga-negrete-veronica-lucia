@@ -6,17 +6,21 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 
-class ESqliteHelperPieza(contexto: Context?,) : SQLiteOpenHelper(contexto, "moviles", null, 1){
+class ESqliteHelperPieza(contexto: Context?,) : SQLiteOpenHelper(contexto, "moviles2", null, 1){
     override fun onCreate(db: SQLiteDatabase?) {
         val scriptSQLCrearTablaPieza =
             """
             CREATE TABLE PIEZA (
-            idPieza INTEGER PRIMARY KEY AUTOINCREMENT,
-            disp INT,
+            idPieza INTEGER PRIMARY KEY,
+            disp INTEGER,
             nombrePieza VARCHAR(50),
             peso REAL,
             garantia BOOLEAN,
-            fabricante VARCHAR(50)
+            fabricante VARCHAR(50),
+            CONSTRAINT fk_dispositivo
+                    FOREIGN KEY (disp)
+                    REFERENCES DISPOSITIVO(disp)
+                    ON DELETE CASCADE
         )
             """.trimIndent()
         db?.execSQL(scriptSQLCrearTablaPieza)
@@ -27,9 +31,11 @@ class ESqliteHelperPieza(contexto: Context?,) : SQLiteOpenHelper(contexto, "movi
 
 
 
-    fun crearPieza(disp: Int, nombrePieza: String, peso: Float, garantia: Boolean, fabricante: String): Boolean {
+    fun crearPieza(idPieza: Int, disp: Int, nombrePieza: String, peso: Float, garantia: Boolean, fabricante: String): Boolean {
         val basedatosEscritura = writableDatabase
         val valoresAGuardar = ContentValues()
+
+        valoresAGuardar.put("idPieza", idPieza)
         valoresAGuardar.put("nombrePieza", nombrePieza)
         valoresAGuardar.put("peso", peso)
         valoresAGuardar.put("garantia", garantia)
@@ -48,14 +54,14 @@ class ESqliteHelperPieza(contexto: Context?,) : SQLiteOpenHelper(contexto, "movi
 
 
 
-    fun eliminarPiezaFormulario(id:Int):Boolean{
+    fun eliminarPiezaFormulario(idPieza:Int, idDisp: Int):Boolean{
         val conexionEscritura = writableDatabase
         // where ID = ?
-        val parametrosConsultaDelete = arrayOf( id.toString() )
+        val parametrosConsultaDelete = arrayOf( idPieza.toString(), idDisp.toString() )
         val resultadoEliminacion = conexionEscritura
             .delete(
                 "PIEZA", // Nombre tabla
-                "id=?", // Consulta Where
+                "idPieza=? and disp=?", // Consulta Where
                 parametrosConsultaDelete
             )
         conexionEscritura.close()
@@ -68,22 +74,22 @@ class ESqliteHelperPieza(contexto: Context?,) : SQLiteOpenHelper(contexto, "movi
         peso: Float,
         garantia: Boolean,
         fabricante: String,
-        id:Int,
+        idPieza:Int,
     ):Boolean{
         val conexionEscritura = writableDatabase
         val valoresAActualizar = ContentValues()
         valoresAActualizar.put("nombrePieza", nombrePieza)
-        valoresAActualizar.put("disp", disp)
+        //valoresAActualizar.put("disp", disp)
         valoresAActualizar.put("peso", peso)
         valoresAActualizar.put("garantia", garantia)
         valoresAActualizar.put("fabricante", fabricante)
         // where ID = ?
-        val parametrosConsultaActualizar = arrayOf( id.toString() )
+        val parametrosConsultaActualizar = arrayOf( idPieza.toString(), disp.toString() )
         val resultadoActualizacion = conexionEscritura
             .update(
                 "PIEZA", // Nombre tabla
                 valoresAActualizar, // Valores
-                "id=?", // Consulta Where
+                "idPieza=? and disp=?", // Consulta Where
                 parametrosConsultaActualizar
             )
         conexionEscritura.close()
@@ -92,12 +98,12 @@ class ESqliteHelperPieza(contexto: Context?,) : SQLiteOpenHelper(contexto, "movi
 
 
 
-    fun consultarPiezaPorID(id: Int): Pieza{
+    fun consultarPiezaPorID(idPieza: Int, disp: Int): Pieza{
         val baseDatosLectura = readableDatabase
         val scriptConsultaLectura = """
-            SELECT * FROM PIEZA WHERE ID = ?
+            SELECT * FROM PIEZA WHERE idPieza = ? AND disp = ?
         """.trimIndent()
-        val parametrosConsultaLectura = arrayOf(id.toString())
+        val parametrosConsultaLectura = arrayOf(idPieza.toString(), disp.toString())
         val resultadoConsultaLectura = baseDatosLectura.rawQuery(
             scriptConsultaLectura,
             parametrosConsultaLectura,
@@ -116,7 +122,7 @@ class ESqliteHelperPieza(contexto: Context?,) : SQLiteOpenHelper(contexto, "movi
                 val garantia= resultadoConsultaLectura.getString(4)
                 val fabricante= resultadoConsultaLectura.getString(5)
 
-                if(id != null){
+                if(idPieza != null){
                     // llenar el arreglo con un nuevo BEntrenador
                     usuarioEncontrado.idPieza= idPieza
                     usuarioEncontrado.disp = disp.toInt()
@@ -137,7 +143,7 @@ class ESqliteHelperPieza(contexto: Context?,) : SQLiteOpenHelper(contexto, "movi
     fun consultarPiezasPorForanea(foraneaValue: Int): ArrayList<Pieza> {
         val baseDatosLectura = readableDatabase
         val scriptConsultaLectura = """
-        SELECT * FROM PIEZA WHERE FORANEA = ?
+        SELECT * FROM PIEZA WHERE disp = ?
     """.trimIndent()
         val parametrosConsultaLectura = arrayOf(foraneaValue.toString())
         val resultadoConsultaLectura = baseDatosLectura.rawQuery(
@@ -145,7 +151,7 @@ class ESqliteHelperPieza(contexto: Context?,) : SQLiteOpenHelper(contexto, "movi
             parametrosConsultaLectura,
         )
 
-        val piezaList = ArrayList<Pieza>()
+        val piezaList = arrayListOf<Pieza>()
 
         if (resultadoConsultaLectura.moveToFirst()) {
             do {
@@ -156,8 +162,20 @@ class ESqliteHelperPieza(contexto: Context?,) : SQLiteOpenHelper(contexto, "movi
                 val garantia = resultadoConsultaLectura.getInt(4) != 0
                 val fabricante = resultadoConsultaLectura.getString(5)
 
-                val pieza = Pieza(idPieza,disp,nombrePieza,peso,garantia,fabricante)
-                piezaList.add(pieza)
+                //val pieza = Pieza(idPieza,disp,nombrePieza,peso,garantia,fabricante)
+               // piezaList.add(pieza)
+
+                if(idPieza != null){
+                    val pieza = Pieza(1, 2, "tornillo", 2f,true, "tornix")
+                    pieza.idPieza = idPieza
+                    pieza.disp = disp
+                    pieza.nombrePieza = nombrePieza
+                    pieza.peso = peso
+                    pieza.garantia = garantia
+                    pieza.fabricante = fabricante
+
+                    piezaList.add(pieza)
+                }
             } while (resultadoConsultaLectura.moveToNext())
         }
 
@@ -166,4 +184,8 @@ class ESqliteHelperPieza(contexto: Context?,) : SQLiteOpenHelper(contexto, "movi
 
         return piezaList
     }
+
+
+
+
 }

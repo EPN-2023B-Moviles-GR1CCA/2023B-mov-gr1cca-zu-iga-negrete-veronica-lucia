@@ -1,7 +1,6 @@
 package com.example.examen01
 
 import android.app.Activity
-import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,7 +13,7 @@ import android.widget.Button
 import android.widget.ListView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
-import java.text.SimpleDateFormat
+import com.google.android.material.snackbar.Snackbar
 
 class ListaDispositivos : AppCompatActivity() {
     private lateinit var adaptador: ArrayAdapter<Dispositivo>
@@ -28,18 +27,18 @@ class ListaDispositivos : AppCompatActivity() {
         dispositivos = BaseDatos.tablaDispositivo!!.listaDispositivos()
 
 
+            val listView = findViewById<ListView>(R.id.lv_lista_disp)
+            val adaptador = ArrayAdapter(
+                this, // Contexto
+                // como se va a ver (XML)
+                android.R.layout.simple_list_item_1,
+                //obtenerDispositivos()
+                dispositivos
+            )
+            listView.adapter = adaptador
+            adaptador.notifyDataSetChanged()
 
-        val listView = findViewById<ListView>(R.id.lv_lista_disp)
-        val adaptador = ArrayAdapter(
-            this, // Contexto
-            // como se va a ver (XML)
-            android.R.layout.simple_list_item_1,
-            obtenerDispositivos()
-        )
-        listView.adapter = adaptador
-        adaptador.notifyDataSetChanged()
-
-        registerForContextMenu(listView)
+            registerForContextMenu(listView)
 
 
         val botonCrear = findViewById<Button>(R.id.btn_nuevo_disp)
@@ -47,41 +46,36 @@ class ListaDispositivos : AppCompatActivity() {
 
 
     }
+
+    fun mostrarSnackbar(texto:String){
+        Snackbar
+            .make(
+                findViewById(R.id.lv_lista_disp), //view
+                texto, //texto
+                Snackbar.LENGTH_LONG //tiwmpo
+            )
+            .show()
+    }
     val callbackContenidoIntentExplicito =
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 if (result.data != null) {
-                    // Logica Negocio
+
                     val data = result.data
-                    val nombreUp = data?.getStringExtra("nombreModificado")
-                    val stockUp = data?.getBooleanExtra("stockModificado", false)
-                    val precioUp = data?.getFloatExtra("precioModificado", 0.0f)
-                    val fechaUp = data?.getStringExtra("dateModificado")
-
-                    val formato = SimpleDateFormat("yyyy-MM-dd")
-                    val fechaNueva = formato.parse(fechaUp)
-                    val nombreDispositivo = nombreUp.toString()
-                    val stock = stockUp.toString().toBoolean()
-                    val precio = precioUp
-                    val fechaCreacion = fechaNueva.toString()
-
-                    val id = idDispo
-
-                    BaseDatos.tablaDispositivo!!.actualizarDipositivoFormulario(
-                        nombreDispositivo,fechaCreacion,stock, precio, id)
-
-
-                    for (disp in obtenerDispositivos()){
-                        println("ID: ${disp.idDispositivo}")
-                        println("Nombre: ${disp.nombreDispositivo}")
-                        println("Stock: ${disp.stock}")
-                        println("Precio: ${disp.precio}")
-                    }
-
+                    dispositivos = BaseDatos.tablaDispositivo!!.listaDispositivos()
+                    val adaptador = ArrayAdapter(
+                        this,
+                        android.R.layout.simple_list_item_1,
+                        dispositivos
+                    )
+                    val listView = findViewById<ListView>(R.id.lv_lista_disp)
+                    listView.adapter = adaptador
                     adaptador.notifyDataSetChanged()
-                    irActividad(ListaDispositivos::class.java)
+                    registerForContextMenu(listView)
+                    mostrarSnackbar("${data?.getStringExtra("message")}")
+
 
 
 
@@ -91,11 +85,7 @@ class ListaDispositivos : AppCompatActivity() {
 
 
     var idDispo = 0
-    override fun onCreateContextMenu(
-        menu: ContextMenu?,
-        v: View?,
-        menuInfo: ContextMenu.ContextMenuInfo?
-    ) {
+    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
         super.onCreateContextMenu(menu, v, menuInfo)
         // Llenamos las opciones del menu
         val inflater = menuInflater
@@ -108,21 +98,30 @@ class ListaDispositivos : AppCompatActivity() {
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.mi_editar -> {
+            R.id.mi_editar_dispo -> {
                 "${idDispo}"
-                abrirActividadConParametros(EditarDispositivo::class.java, idDispo)
+                val id = dispositivos.get(idDispo).idDispositivo
+                val extras = Bundle()
+                extras.putString("idDispositivo", id.toString())
+              //  abrirActividadConParametros(EditarDispositivo::class.java, idDispo)
+                editarDisp(EditarDispositivo::class.java, extras)
                 return true
             }
 
-            R.id.mi_eliminar -> {
+            R.id.mi_eliminar_dispo -> {
                 "${idDispo}"
                 abrirDialogo(dispositivos.get(idDispo).idDispositivo)
                 return true
             }
 
             R.id.mi_verPiezas -> {
-                "${idDispo}"
-                abrirActividadConParametros(ListaPiezas::class.java, idDispo)
+                val disp = dispositivos.get(idDispo).idDispositivo
+                val nombreDisp = dispositivos.get(idDispo).nombreDispositivo
+                val extras = Bundle()
+                extras.putString("disp", disp.toString())
+                extras.putString("nombreDispositivo",nombreDisp)
+                editarDisp(ListaPiezas::class.java, extras)
+            //    abrirActividadConParametros(ListaPiezas::class.java, idDispo)
                 return true
             }
 
@@ -130,38 +129,63 @@ class ListaDispositivos : AppCompatActivity() {
         }
     }
 
-    fun abrirDialogo(posicionDispositivo: Int) {
+    fun abrirDialogo(idDispositivo: Int) {
         val builder = AlertDialog.Builder(this)
+        var eliminacionExitosa = false
         builder.setTitle("¿Esta seguro que desea eliminar?")
         builder.setPositiveButton("Aceptar",
             { dialog, which ->
-                val id = posicionDispositivo
-                BaseDatos.tablaDispositivo!!.eliminarDispositivoFormulario(id)
-                adaptador.notifyDataSetChanged()
-                dialog.dismiss()
-                irActividad(ListaDispositivos::class.java)
-
+                val resp = BaseDatos.tablaDispositivo?.eliminarDispositivoFormulario(idDispositivo)
+                if(resp == true){
+                    mostrarSnackbar("Se ha eliminado")
+                    dispositivos = BaseDatos.tablaDispositivo!!.listaDispositivos()
+                    val adaptador = ArrayAdapter(
+                        this,
+                        android.R.layout.simple_list_item_1,
+                        dispositivos
+                    )
+                    val listView = findViewById<ListView>(R.id.lv_lista_disp)
+                    listView.adapter = adaptador
+                    adaptador.notifyDataSetChanged()
+                    registerForContextMenu(listView)
+                    eliminacionExitosa = true
+                }else{
+                    mostrarSnackbar("No se ha eliminado")
+                    eliminacionExitosa = false
+                }
+                //val id = posicionDispositivo
+                //BaseDatos.tablaDispositivo!!.eliminarDispositivoFormulario(id)
+                //adaptador.notifyDataSetChanged()
             }
         )
         builder.setNegativeButton("Cancelar", null)
+
         val dialogo = builder.create()
         dialogo.show()
+
     }
-    fun eliminarDispositivo(id: Int){
+  /*  fun eliminarDispositivo(id: Int){
        BaseDatos.tablaDispositivo!!.eliminarDispositivoFormulario(
            id)
         adaptador.notifyDataSetChanged()
 
         irActividad(ListaDispositivos::class.java)
-    }
+    }*/
 
-    fun obtenerDispositivos(): ArrayList<Dispositivo> {
+  /*  fun obtenerDispositivos(): ArrayList<Dispositivo> {
         return BaseDatos.tablaDispositivo!!.listaDispositivos()
-    }
+    }*/
 
     fun irActividad(clase: Class<*>) {
         val intent = Intent(this, clase)
         startActivity(intent)
+    }
+    fun editarDisp(clase: Class<*>, parametros: Bundle? = null){
+        val intent = Intent(this, clase)
+        if(parametros != null){
+            intent.putExtras(parametros)
+        }
+        callbackContenidoIntentExplicito.launch(intent)
     }
    /* fun irActividad(clase: Class<*>, id: Int){
         val intent = Intent(this, clase)
@@ -169,13 +193,13 @@ class ListaDispositivos : AppCompatActivity() {
         startActivity(intent)
     }*/
 
-   fun abrirActividadConParametros(clase: Class<*>, dispositivoSeleccion: Int) {
+  /* fun abrirActividadConParametros(clase: Class<*>, dispositivoSeleccion: Int) {
         val intentExplicito = Intent(this, clase)
         // Enviar parametros (solamente variables primitivas)
         intentExplicito.putExtra("id", dispositivoSeleccion)
 
         callbackContenidoIntentExplicito.launch(intentExplicito)
-    }
+    }*/
 
 
 }

@@ -33,6 +33,12 @@ class NuevoDispositivo : AppCompatActivity() {
             val precio = findViewById<EditText>(R.id.input_precio)
             val stock = findViewById<EditText>(R.id.input_stock)
 
+          /*  id.error = null
+            nombre.error = null
+            fecha.error = null
+            precio.error = null
+            stock.error = null*/
+
             val idDipositivo = id.text.toString().toInt()
             val nombreDispositivo = nombre.text.toString()
             val fechaCreacion  = fecha.text.toString()
@@ -40,8 +46,9 @@ class NuevoDispositivo : AppCompatActivity() {
             val stockDispositivo = stock.text.toString().toBoolean()
 
 
-            BaseDatos.tablaDispositivo!!.crearDispositivo(nombreDispositivo,
+            BaseDatos.tablaDispositivo!!.crearDispositivo(idDipositivo,nombreDispositivo,
                 fechaCreacion,stockDispositivo,precioDispositivo)
+
 
             irActividad(ListaDispositivos::class.java)
 
@@ -49,7 +56,7 @@ class NuevoDispositivo : AppCompatActivity() {
     }
 
 
-    fun irActividad(clase: Class<*>){
+   fun irActividad(clase: Class<*>){
         val intent = Intent(this, clase)
         startActivity(intent)
     }
