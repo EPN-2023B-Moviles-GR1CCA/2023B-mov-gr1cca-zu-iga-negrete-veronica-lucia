@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NuevaPieza">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NUEVA PIEZA"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.149" />
+
+    <EditText
+        android:id="@+id/input_idPieza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="Ingres el id"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <EditText
+        android:id="@+id/input_nombre_pieza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="Ingrese el nombre"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/input_idPieza"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/input_idPieza"
+        app:layout_constraintTop_toBottomOf="@+id/input_idPieza" />
+
+    <EditText
+        android:id="@+id/input_peso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:ems="10"
+        android:hint="Ingrese el peso"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/input_nombre_pieza"
+        app:layout_constraintStart_toStartOf="@+id/input_nombre_pieza"
+        app:layout_constraintTop_toBottomOf="@+id/input_nombre_pieza" />
+
+    <EditText
+        android:id="@+id/input_garantia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:ems="10"
+        android:hint="Ingrese garantia"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/input_peso"
+        app:layout_constraintStart_toStartOf="@+id/input_peso"
+        app:layout_constraintTop_toBottomOf="@+id/input_peso" />
+
+    <EditText
+        android:id="@+id/input_fabricante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:ems="10"
+        android:hint="Ingrese el fabricante"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/input_garantia"
+        app:layout_constraintStart_toStartOf="@+id/input_garantia"
+        app:layout_constraintTop_toBottomOf="@+id/input_garantia" />
+
+    <Button
+        android:id="@+id/btn_guardar_pieza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="GUARDAR"
+        app:layout_constraintEnd_toEndOf="@+id/input_fabricante"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="@+id/input_fabricante"
+        app:layout_constraintTop_toBottomOf="@+id/input_fabricante" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

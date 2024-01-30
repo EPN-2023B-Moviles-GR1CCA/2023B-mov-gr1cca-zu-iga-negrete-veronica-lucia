@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Examen01</string>
+    <string-array name="opciones">
+        <item>true</item>
+        <item>false</item>
+    </string-array>
+    <string-array name="string_array_opciones_dialogo">
+        <item>Si</item>
+        <item>No</item>
+    </string-array>
+</resources>
