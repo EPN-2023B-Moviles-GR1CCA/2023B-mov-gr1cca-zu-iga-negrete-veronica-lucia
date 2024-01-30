@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.examenib.app-mergeDebugResources-55:/values-port/values-port.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\alodlt\\.gradle\\caches\\transforms-3\\eb6f0767bf5e0d520020e949bf997bc0\\transformed\\appcompat-1.6.1\\res\\values-port\\values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        }
+    ]
+}
