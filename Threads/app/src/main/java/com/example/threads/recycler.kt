@@ -1,11 +1,11 @@
 package com.example.threads
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 
-class MainActivity : AppCompatActivity() {
+class recycler : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        setContentView(R.layout.activity_recycler)
     }
 }
