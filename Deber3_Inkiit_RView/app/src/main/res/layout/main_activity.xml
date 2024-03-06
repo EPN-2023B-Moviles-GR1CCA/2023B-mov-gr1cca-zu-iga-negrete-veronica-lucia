@@ -24,21 +24,6 @@
             android:background="@color/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
-            <ImageButton
-                android:id="@+id/imageViewFilter"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:contentDescription="Botón de búsqueda"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_filter"
-                app:tint="@color/white"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                app:layout_constraintHorizontal_bias="0.0" />
-
             <!-- Nombre de la aplicación en el centro del Toolbar -->
             <TextView
                 android:id="@+id/textViewAppName"
@@ -78,33 +63,7 @@
                 app:layout_constraintVertical_bias="1.0"
                 app:layout_constraintHorizontal_bias="1.0">
 
-                <!-- Botón de búsqueda -->
-                <ImageButton
-                    android:id="@+id/imageViewSearch"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:contentDescription="Botón de búsqueda"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_search"
-                    app:tint="@color/white" />
 
-                <!-- Espacio -->
-                <Space
-                    android:layout_width="20dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <!-- Botón de opciones -->
-                <ImageButton
-                    android:id="@+id/btnOptions"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:contentDescription="Opciones"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_options"
-                    app:tint="@color/white" />
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>

@@ -5,5 +5,8 @@ class BaseDatos {
         var tablaDispositivo: ESqliteHelperDispositivo? = null
         var tablaPiezas: ESqliteHelperPieza? = null
 
+        //FIRESTORE
+        var bddAplicacion: DispositivoFirestore? = null
+
     }
 }

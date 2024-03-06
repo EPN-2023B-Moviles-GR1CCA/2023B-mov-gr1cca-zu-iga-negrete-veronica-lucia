@@ -135,7 +135,7 @@ class ListaDispositivos : AppCompatActivity() {
         builder.setTitle("¿Esta seguro que desea eliminar?")
         builder.setPositiveButton("Aceptar",
             { dialog, which ->
-                val resp = BaseDatos.tablaDispositivo?.eliminarDispositivoFormulario(idDispositivo)
+              /* val resp = BaseDatos.tablaDispositivo?.eliminarDispositivoFormulario(idDispositivo)
                 if(resp == true){
                     mostrarSnackbar("Se ha eliminado")
                     dispositivos = BaseDatos.tablaDispositivo!!.listaDispositivos()
@@ -155,7 +155,19 @@ class ListaDispositivos : AppCompatActivity() {
                 }
                 //val id = posicionDispositivo
                 //BaseDatos.tablaDispositivo!!.eliminarDispositivoFormulario(id)
-                //adaptador.notifyDataSetChanged()
+                //adaptador.notifyDataSetChanged()*/
+                BaseDatos.bddAplicacion?.eliminarDispPorID(idDispositivo.toString())
+                    ?.addOnSuccessListener {
+                        val listView = findViewById<ListView>(R.id.lv_lista_disp)
+                        listView.adapter = adaptador
+                        adaptador.notifyDataSetChanged()
+                        registerForContextMenu(listView)
+                        eliminacionExitosa = true
+                    }
+                    ?.addOnFailureListener { e ->
+                        mostrarSnackbar("No se pudo eliminar al cocinero")
+                        eliminacionExitosa = false
+                    }
             }
         )
         builder.setNegativeButton("Cancelar", null)

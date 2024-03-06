@@ -6,12 +6,21 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
+    var dispositivos = arrayListOf<Dispositivo>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        BaseDatos.tablaDispositivo = ESqliteHelperDispositivo(this)
-        BaseDatos.tablaPiezas = ESqliteHelperPieza(this)
+        //BaseDatos.tablaDispositivo = ESqliteHelperDispositivo(this)
+        //BaseDatos.tablaPiezas = ESqliteHelperPieza(this)
+
+        //Firestore
+        BaseDatos.bddAplicacion = DispositivoFirestore()
+
+        BaseDatos.bddAplicacion!!.obtenerDispositivos {
+            dispositivos -> this.dispositivos = dispositivos
+        }
+
 
         val botonInicio = findViewById<Button>(R.id.btn_iniciar)
         botonInicio
