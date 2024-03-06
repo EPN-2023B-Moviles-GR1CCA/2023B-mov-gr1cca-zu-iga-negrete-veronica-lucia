@@ -1,0 +1,198 @@
+[
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ik6.jpg.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ik6.jpg"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ic_filter.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ic_filter.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ic_write.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ic_write.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ic_inbox.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ic_inbox.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ik2.jpg.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ik2.jpg"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ic_discover.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ic_discover.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ik9.jpg.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ik9.jpg"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/mipmap-xxhdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ic_library.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ic_library.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/xml_backup_rules.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/menu_menu_options.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/menu/menu_options.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/mipmap-mdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/mipmap-mdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ic_add.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ic_add.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ic_options.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ic_options.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/layout_item_book.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/layout/item_book.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/mipmap-xxxhdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_btn_leer_mas_bg.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/btn_leer_mas_bg.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_custom_star_rating.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/custom_star_rating.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/menu_bottom_nav_menu.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/menu/bottom_nav_menu.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ik5.jpg.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ik5.jpg"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ik10.jpg.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ik10.jpg"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ic_profile.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ic_profile.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ik8.jpg.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ik8.jpg"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ic_home.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ic_home.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ik1.jpg.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ik1.jpg"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ik4.jpg.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ik4.jpg"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/mipmap-xhdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/mipmap-xhdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/layout_main_activity.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/layout/main_activity.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/layout_item_recommendation.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/layout/item_recommendation.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ik7.jpg.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ik7.jpg"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ic_more.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ic_more.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ic_search.xml.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ic_search.xml"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/drawable_ik3.jpg.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/drawable/ik3.jpg"
+    },
+    {
+        "merged": "com.example.deber3_inkiit_rview.app-merged_res-4:/mipmap-hdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.example.deber3_inkiit_rview.app-main-6:/mipmap-hdpi/ic_launcher_foreground.webp"
+    }
+]
